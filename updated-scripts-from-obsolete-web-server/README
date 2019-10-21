@@ -1,0 +1,27 @@
+These two scripts calculate the atomic fluctuations in protein
+crystals and perform a basic analysis of the data. Please see the
+source code for an explanation of the parameters.
+
+To run these scripts, you need to install the following software
+on your computer (unless it is already installed, of course):
+
+1) The Python interpreter, version 2.4 or 2.5.
+   http://www.python.org/
+
+2) One of
+      Numerical Python 23.8.2
+      http://dirac.cnrs-orleans.fr/plone/software/scientificpython/Numeric-23.8.2.tar.gz/view
+   or
+      NumPy 1.x
+      http://numpy.scipy.org/
+
+5) The netCDF library, version 3.4 or later
+   http://www.unidata.ucar.edu/software/netcdf/
+
+4) Scientific Python, version 2.7.8 or later
+   http://dirac.cnrs-orleans.fr/ScientificPython/
+   http://sourcesup.cru.fr/projects/scientific-py/
+
+5) The Molecular Modelling Toolkit, version 2.5.21 or later
+   http://dirac.cnrs-orleans.fr/MMTK/
+   http://sourcesup.cru.fr/projects/mmtk/

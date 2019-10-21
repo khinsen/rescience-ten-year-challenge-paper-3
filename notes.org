@@ -1,0 +1,63 @@
+* Finding the code
+On the [[https://academic.oup.com/bioinformatics/article/24/4/521/206987][landing page of the article]], there is a [[https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/bioinformatics/24/4/10.1093_bioinformatics_btm625/2/btm625_Supplementary_Data.zip?Expires=1574686859&Signature=n4klbZdHWvJ1PDC6ROyvarnAeX8TziiG3rv26WGFP5nnwTPxb0OKOHFlRCol~gju3wbR-2QFMAM8mwCw69xtaNMGhkcMCGlI0BaeBmHWAMc12YPjpFzXBokBG4wunJErDMW6p6kb~EpJp9LPXV6m-50416-LihKEtGUtX8jJdq8LJMu~L~~anD4CPJd9Y~2fVfez4oFVU9EdCAuEBuEusqBJr1Ew1tkd-2NJ6OEqopQHQu8TCU3zxeiglNopKsGFkinhtG564T7m3Bh5mC4D-sgy9npJqzBCINFEVIJQhEpMJKc0ryE5FU9OFMUbQXxy5-aMNejxc6t90RmW7O9~og__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA][link]] for downloading a zip file with all the supplementary material. This zip file contains a file =bioinf-2007-1619-File004.tar=, whose contents are in file:scripts-from-suplementary-material-to-original-paper.
+
+#+begin_src sh :results output :exports both
+ls scripts-from-suplementary-material-to-original-paper
+#+end_src
+
+#+RESULTS:
+: README
+: analyze_crystal_fluctuations.py
+: calculate_crystal_fluctuations.py
+
+I remember that I had somewhat later published an update on my lab's Web site. That site, based on an increasingly hard to maintain Plone server, was later replaced by a simpler static HTML site, but much of the original content was not transferred. My updated scripts are therefore no longer available there, but fortunately there is a [[https://web.archive.org/web/20101114101014/http://dirac.cnrs-orleans.fr/plone/Members/hinsen/software-for-normal-mode-calculations-on-a-protein-crystal][copy in the Internet Archive]] which is in file:updated-scripts-from-obsolete-web-server.
+
+#+begin_src sh :results output :exports both
+ls updated-scripts-from-obsolete-web-server
+#+end_src
+
+#+RESULTS:
+: README
+: analyze_crystal_fluctuations.py
+: calculate_crystal_fluctuations.py
+: calculate_crystal_fluctuations_small_memory.py
+
+A quick look at the changes shows 
+ - an update in the version number of a dependency
+ - the correction of a typo that had no influence on the results
+ - a bug fix for handling PDB files with missing ADPs (anisotropic displacement parameters)
+ - additional diagnostic output
+
+#+begin_src sh :results output :exports both
+diff -r scripts-from-suplementary-material-to-original-paper updated-scripts-from-obsolete-web-server
+#+end_src
+
+#+RESULTS:
+#+begin_example
+diff -r scripts-from-suplementary-material-to-original-paper/README updated-scripts-from-obsolete-web-server/README
+21c21
+< 4) Scientific Python, version 2.7.7 or later
+---
+> 4) Scientific Python, version 2.7.8 or later
+diff -r scripts-from-suplementary-material-to-original-paper/analyze_crystal_fluctuations.py updated-scripts-from-obsolete-web-server/analyze_crystal_fluctuations.py
+73,74c73,74
+<     f_exp = N.array(adp_exp)
+<     b_exp = f_exp[:,0,0]++f_exp[:,1,1]+f_exp[:,2,2]
+---
+>     f_exp = N.array([t.array for t in adp_exp])
+>     b_exp = f_exp[:,0,0]+f_exp[:,1,1]+f_exp[:,2,2]
+152,153c152,154
+< writeArray(N.array([anisotropy(u.array) for u in adp_exp]),
+<            'anisotropy_exp_%s_%d_%d_%d.plot' % (pdb_code, n1, n2 ,n3))
+---
+> if None not in adp_exp:
+>     writeArray(N.array([anisotropy(u.array) for u in adp_exp]),
+>                'anisotropy_exp_%s_%d_%d_%d.plot' % (pdb_code, n1, n2 ,n3))
+diff -r scripts-from-suplementary-material-to-original-paper/calculate_crystal_fluctuations.py updated-scripts-from-obsolete-web-server/calculate_crystal_fluctuations.py
+91a92,95
+> print len(au_atoms), "C-alpha atoms in the asymmetric unit"
+> print len(atoms), "C-alpha atoms in the unit cell"
+> 
+> 
+Only in updated-scripts-from-obsolete-web-server: calculate_crystal_fluctuations_small_memory.py
+#+end_example
