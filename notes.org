@@ -61,3 +61,28 @@ diff -r scripts-from-suplementary-material-to-original-paper/calculate_crystal_f
 > 
 Only in updated-scripts-from-obsolete-web-server: calculate_crystal_fluctuations_small_memory.py
 #+end_example
+
+None of these changes is important for reproducing the original results, so I will use the original code in the following.
+* Dependencies
+** Comments on the README from 2008
+*** The Python interpreter, version 2.4 or 2.5.
+Apparently I was careful back then, not envisaging later versions to be sufficiently compatible.
+
+Python is still available from http://www.python.org/, although it is not clear if this will remain true after the end of support for Python in January 2020.
+*** Numerical Python 23.8.2 or NumPy 1.x
+There was a good reason to be specific about Numerical Python, since I knew my code did not work with versions 24.x, although I never found out why. It wasn't worth exploring since everybody was moving on to NumPy anyway. The download link for Numerical Python 23.8.2 no longer works.
+
+"NumPy 1.x" was an overly optimistic statement. Contrary to Numerical Python, whose version number moved quickly without backwards compatibility issues, NumPy has introduced multiple breaking changes while remaining at major version 1 to this day. I know now that my code only works up to NumPy 1.8.
+The site http://numpy.scipy.org/ no longer responds. The new home page is numpy.org, but I can't find a link to the source code there! I happen to know that NumPy is hosted on GitHub now (https://github.com/numpy/numpy). Old releases can be found there as well, though it requires some familiarity with GitHub habits.
+*** netCDF 3.4 or later
+All later versions should indeed work, including the current 4.x series. netCDF is still available from http://www.unidata.ucar.edu/software/netcdf/.
+*** ScientificPython 2.7.7 or later, MMTK 2.5.21 or later
+These are my own libraries, so I could be confident about compatibility. The download links are no longer valid (the forge at sourcesup.cru.fr no longer exists). The home pages are still alive (I maintain the server that hosts them myself) and point to the new download site at bitbucket.org. However, the code is managed by Mercurial, which Bitbucket won't support for much longer. I have to move somewhere else!
+** Which versions to use for the reproduction attempt?
+I feel confident to move on to:
+ - Python 2.7 (https://www.python.org/downloads/release/python-2717/)
+ - NumPy 1.8.2 (https://github.com/numpy/numpy/releases/tag/v1.8.2)
+ - netCDF 4.7.2 (https://www.unidata.ucar.edu/software/netcdf/)
+ - ScientificPython 2.9.4 (https://bitbucket.org/khinsen/scientificpython/downloads/ScientificPython-2.9.4.tar.gz)
+ - MMTK 2.7.11 (https://bitbucket.org/khinsen/mmtk/downloads/MMTK-2.7.11.tar.gz)
+These are the latest versions of everything except for NumPy.
