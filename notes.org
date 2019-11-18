@@ -89,3 +89,49 @@ These are the latest versions of everything except for NumPy.
 * Input data
 The only input data for each computation is a protein structure. The two protein structured used are still available from the Protein Data Bank: [[http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1iee.ent][entry IEEE]] and [[http://www.ebi.ac.uk/pdbe/entry-files/download/pdb2lym.ent][entry 2LYM]].
 The PDB does update its files from time to time, The file for a specifc entry is intended to represent the original data deposited by its authors at any time, but may be modified to conform to newer versions of the file format, or to fix mistakes. There is thus no guarantee that a file downloaded today is the same as in 2008, but the scientific information it contains is supposed to stay the same.
+* Running the code using Guix
+All the dependencies are already packaged for Guix. Creating an environment from
+#+begin_src scheme
+(specifications->manifest
+ '("wget"
+   "python2"
+   "python2-mmtk"
+   "gnuplot"))
+#+end_src
+should allow to download the PDB files, run the two scripts, and plot the results. Tested with guix version
+#+begin_src sh :results output :exports both
+guix describe
+#+end_src
+
+#+RESULTS:
+: Generation 11	Nov 16 2019 10:44:27	(current)
+:   guix 87e7faa
+:     repository URL: https://git.savannah.gnu.org/git/guix.git
+:     branch: master
+:     commit: 87e7faa2ae641d8302efc8b90f1e45f43f67f6da
+
+The steps are
+#+begin_src sh :results output :exports both
+wget -O 1IEE.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1iee.ent
+wget -O 2LYM.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb2lym.ent
+python calculate_crystal_fluctuations.py
+python analyze_crystal_fluctuations.py
+#+end_src
+
+The second script (=analyze_crystal_fluctuations.py=) crashes with the traceback:
+#+begin_example
+Traceback (most recent call last):
+  File "analyze_crystal_fluctuations.py", line 74, in <module>
+    b_exp = f_exp[:,0,0]++f_exp[:,1,1]+f_exp[:,2,2]
+IndexError: too many indices
+#+end_example
+An analysis using =pdb= (the Python Debugger, not the Protein Data Bank!) shows that the conversion from a list of =Scientific.Geometry.Tensor= objects to a 3-dimensional NumPy array fails. This is probably due to a compatibility-breaking change in NumPy at some point (to be confirmed). The fix is to change line 73 from
+#+begin_src python :results value
+    f_exp = N.array(adp_exp)
+#+end_src
+to
+#+begin_src python :results value
+    f_exp = N.array([u.array for u in adp_exp])
+#+end_src
+
+With that fix, the script runs and produces several output files whose only documentation is the code.
