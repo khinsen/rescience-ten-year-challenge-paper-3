@@ -86,3 +86,6 @@ I feel confident to move on to:
  - ScientificPython 2.9.4 (https://bitbucket.org/khinsen/scientificpython/downloads/ScientificPython-2.9.4.tar.gz)
  - MMTK 2.7.11 (https://bitbucket.org/khinsen/mmtk/downloads/MMTK-2.7.11.tar.gz)
 These are the latest versions of everything except for NumPy.
+* Input data
+The only input data for each computation is a protein structure. The two protein structured used are still available from the Protein Data Bank: [[http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1iee.ent][entry IEEE]] and [[http://www.ebi.ac.uk/pdbe/entry-files/download/pdb2lym.ent][entry 2LYM]].
+The PDB does update its files from time to time, The file for a specifc entry is intended to represent the original data deposited by its authors at any time, but may be modified to conform to newer versions of the file format, or to fix mistakes. There is thus no guarantee that a file downloaded today is the same as in 2008, but the scientific information it contains is supposed to stay the same.
