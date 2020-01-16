@@ -156,3 +156,9 @@ Fails:
 IOError: [Errno 2] No such file or directory: '/usr/include/netinet/in.h'
 #+end_example
 Conclusion: Python 2.5 must first be packaged for Guix.
+* Reproduction using the patched original scripts
+#+begin_src sh :results output :exports both
+cd reproduction
+guix environment --pure --ad-hoc wget -- wget -O 1IEE.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1iee.ent
+guix environment --pure --ad-hoc wget -- wget -O 2LYM.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb2lym.ent
+#+end_src
