@@ -14,10 +14,6 @@
 # have to be a real PDB code; any text string is allowed.
 pdb_code = '1IEE'
 
-# The name of the PDB file to be read. Note that this file must contain
-# the crystal parameters as well as the atomic coordinates.
-pdb_file = '%s.pdb' % pdb_code
-
 # The temperature (in Kelvin) at which the structure was obtained.
 temperature = 120.
 
@@ -30,6 +26,15 @@ scale_factor = 2.99
 n1 = 1
 n2 = 1
 n3 = 1
+
+# For convenience in batch mode, read paramters from the command line
+import sys
+_, pdb_code, n1, n2, n3 = sys.argv
+n1 = int(n1)
+n2 = int(n2)
+n3 = int(n3)
+
+pdb_file = '%s.pdb' % pdb_code
 
 #
 # There should be no need to modify anything from here on.
