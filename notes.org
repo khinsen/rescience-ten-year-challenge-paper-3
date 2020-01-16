@@ -157,8 +157,37 @@ IOError: [Errno 2] No such file or directory: '/usr/include/netinet/in.h'
 #+end_example
 Conclusion: Python 2.5 must first be packaged for Guix.
 * Reproduction using the patched original scripts
+Download PDB files
 #+begin_src sh :results output :exports both
 cd reproduction
 guix environment --pure --ad-hoc wget -- wget -O 1IEE.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb1iee.ent
 guix environment --pure --ad-hoc wget -- wget -O 2LYM.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb2lym.ent
 #+end_src
+
+Run the analysis on 1IEE, delete the intermediate files
+#+begin_src sh :results output :exports both
+cd reproduction
+
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 1 1 1
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 1 1 1
+rm crystal_fluctuations_1IEE_1_1_1.nc
+
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 1 2 1
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 1 2 1
+rm crystal_fluctuations_1IEE_1_2_1.nc
+
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 1 2 2
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 1 2 2
+rm crystal_fluctuations_1IEE_1_2_2.nc
+
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 2 2 1
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 2 2 1
+rm crystal_fluctuations_1IEE_2_2_1.nc
+
+#+end_src
+
+#+RESULTS:
+: 129 out of 129 atoms have ADPs
+: 129 out of 129 atoms have ADPs
+: 129 out of 129 atoms have ADPs
+: 129 out of 129 atoms have ADPs
