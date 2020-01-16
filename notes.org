@@ -139,3 +139,20 @@ to
 With that fix, the script runs and produces several output files whose only documentation is the code.
 * Trying to use NumPy 1.0.4
 To explore the cause of the crash in =analyze_crystal_fluctuations.py=, it would be nice to run with a NumPy version close to the original. Unfortunately, NumPy 1.0.4 cannot be installed with Python 2.7.16. NumPy 1.0.4 uses a modified version of the then-current =distutils=, whose code to read the Python installation configuration cannot deal with the configuration files of Python 2.7.
+** Python 2.5
+Installation under Guix
+#+begin_src sh :results output :exports both
+guix environment --ad-hoc wget -- wget https://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz
+
+guix environment --container --ad-hoc wget gzip tar binutils autoconf coreutils sed grep make gcc-toolchain
+wget https://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz
+tar xzf Python-2.5.2.tgz
+cd Python-2.5.2
+./configure --prefix=$HOME/python2.5
+make install
+#+end_src
+Fails:
+#+begin_example
+IOError: [Errno 2] No such file or directory: '/usr/include/netinet/in.h'
+#+end_example
+Conclusion: Python 2.5 must first be packaged for Guix.
