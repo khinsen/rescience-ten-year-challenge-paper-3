@@ -70,7 +70,7 @@ print len([a for a in adp_exp if a is not None]), "out of", \
 if None not in adp_exp:
     # If all atoms have ADPs, don't use the B factors but the traces
     # of the ADPs instead
-    f_exp = N.array(adp_exp)
+    f_exp = N.array([u.array for u in adp_exp])
     b_exp = f_exp[:,0,0]++f_exp[:,1,1]+f_exp[:,2,2]
 else:
     b_exp = N.array(b_exp)
