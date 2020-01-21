@@ -29,10 +29,11 @@ n3 = 1
 
 # For convenience in batch mode, read paramters from the command line
 import sys
-_, pdb_code, n1, n2, n3 = sys.argv
+_, pdb_code, n1, n2, n3, sf = sys.argv
 n1 = int(n1)
 n2 = int(n2)
 n3 = int(n3)
+scale_factor = float(sf)
 
 pdb_file = '%s.pdb' % pdb_code
 
