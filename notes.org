@@ -137,6 +137,8 @@ to
 #+end_src
 
 With that fix, the script runs and produces several output files whose only documentation is the code.
+** Older NumPy versions in Guix
+The oldest NumPy version in Guix is 1.9.1, added with commit ee8869a694803e582e203208d04a0725bfc8241 in December 2014.
 * Trying to use NumPy 1.0.4
 To explore the cause of the crash in =analyze_crystal_fluctuations.py=, it would be nice to run with a NumPy version close to the original. Unfortunately, NumPy 1.0.4 cannot be installed with Python 2.7.16. NumPy 1.0.4 uses a modified version of the then-current =distutils=, whose code to read the Python installation configuration cannot deal with the configuration files of Python 2.7.
 ** Python 2.5
@@ -157,6 +159,8 @@ IOError: [Errno 2] No such file or directory: '/usr/include/netinet/in.h'
 #+end_example
 Conclusion: Python 2.5 must first be packaged for Guix.
 * Reproduction using the patched original scripts
+The scripts perform the core of the computations, but their output is not sufficient to reproduce the figures shown in the paper. The transformation from the output of the scripts to the figures has been done using additional scripts (not published and lost in the meantime) and by manual intervention. It would not be difficult to reconstruct this work, but that would be replication rather then reproduction, and thus not the subject of the current exercise. In the following, I will limite myself to producing figures that should convince the reader that the numbers I obtain today are sufficiently close to the numbers I obtained in 2007.
+
 ** Download PDB files
 #+begin_src sh :results output :exports both
 cd reproduction
@@ -180,6 +184,12 @@ cd reproduction
 guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 1 1 1 2.99
 guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 1 1 1
 
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 2 2 2 2.99
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 2 2 2
+
+guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 3 3 3 2.99
+guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 3 3 3
+
 guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 4 4 4 2.99
 guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 4 4 4
 
@@ -189,12 +199,10 @@ guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_cry
 guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 10 10 10 2.99
 guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 10 10 10
 
-guix environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 1IEE 20 20 20 2.99
-guix environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  1IEE 20 20 20
-
 #+end_src
 
 #+RESULTS:
+: 129 out of 129 atoms have ADPs
 : 129 out of 129 atoms have ADPs
 : 129 out of 129 atoms have ADPs
 : 129 out of 129 atoms have ADPs
@@ -256,12 +264,12 @@ gnuplot < fig3.gnuplot
 [[file:reproduction/fig3.png]]
 
 *** Figure 4
-The elastic medium approximation is not computed by the scripts, so only the crystal modes will be plotted here.
+The elastic medium approximation is not computed by the scripts, so only the crystal modes will be plotted here. Moreover, the following plot mixes the four panes (and more) of the original figure, because the scripts do not sort the q vectors by direction, as would be required to reproduce Figure 4 correctly. The link between the figure below and the original Figure 4 is that all the drawn-out lines in the latter should pass through the points in the former.
 
 #+begin_src gnuplot :tangle reproduction/fig4.gnuplot
 set terminal png
 set output "fig4.png"
-plot "dispersion_1IEE_4_4_4.plot" w p
+plot "dispersion_1IEE_5_5_5.plot" w p
 #+end_src
 #+begin_src sh :results output :exports both
 cd reproduction
