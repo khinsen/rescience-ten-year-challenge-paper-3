@@ -160,6 +160,17 @@ IOError: [Errno 2] No such file or directory: '/usr/include/netinet/in.h'
 Conclusion: Python 2.5 must first be packaged for Guix.
 * Reproduction using the patched original scripts
 The scripts perform the core of the computations, but their output is not sufficient to reproduce the figures shown in the paper. The transformation from the output of the scripts to the figures has been done using additional scripts (not published and lost in the meantime) and by manual intervention. It would not be difficult to reconstruct this work, but that would be replication rather then reproduction, and thus not the subject of the current exercise. In the following, I will limite myself to producing figures that should convince the reader that the numbers I obtain today are sufficiently close to the numbers I obtained in 2007.
+** Record Guix version
+#+begin_src sh :results output :exports both
+guix describe
+#+end_src
+
+#+RESULTS:
+: Generation 16	Jan 14 2020 10:00:52	(current)
+:   guix 5c3d77c
+:     repository URL: https://git.savannah.gnu.org/git/guix.git
+:     branch: master
+:     commit: 5c3d77c3b14a9e87b4075efa4d7a877181e25665
 
 ** Download PDB files
 #+begin_src sh :results output :exports both
