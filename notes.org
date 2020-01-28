@@ -173,6 +173,8 @@ $guix_command environment --pure --ad-hoc wget -- wget -O 2LYM.pdb http://www.eb
 $guix_command environment --pure --ad-hoc wget -- wget -O 3LZT.pdb http://www.ebi.ac.uk/pdbe/entry-files/download/pdb3lzt.ent
 #+end_src
 
+#+RESULTS:
+
 ** Run the analysis on 3LZT (for Figure 2)
 #+begin_src sh :results output :exports both :var guix_command=guix-command
 cd reproduction
@@ -180,6 +182,9 @@ cd reproduction
 $guix_command environment --container --ad-hoc python2 python2-mmtk -- python calculate_crystal_fluctuations.py 3LZT 1 1 1 1.0
 $guix_command environment --container --ad-hoc python2 python2-mmtk -- python analyze_crystal_fluctuations.py  3LZT 1 1 1
 #+end_src
+
+#+RESULTS:
+: 129 out of 129 atoms have ADPs
 
 ** Run the analysis on 1IEE (for Figures 3 to 5)
 #+begin_src sh :results output :exports both :var guix_command=guix-command
@@ -215,6 +220,7 @@ $guix_command environment --container --ad-hoc python2 python2-mmtk -- python an
 : 129 out of 129 atoms have ADPs
 : 129 out of 129 atoms have ADPs
 : 129 out of 129 atoms have ADPs
+: 129 out of 129 atoms have ADPs
 
 ** Reconstruct the plots (partially)
 
@@ -241,6 +247,8 @@ cd reproduction
 $guix_command environment --pure --ad-hoc gnuplot -- gnuplot < fig2.gnuplot
 #+end_src
 
+#+RESULTS:
+
 [[file:reproduction/fig2.png]]
 
 In Fig. 3, the B factors are scaled by a factor 100 to convert the nm^2 values in the files to Ang^2 as used in the original plots.
@@ -264,6 +272,8 @@ cd reproduction
 $guix_command environment --pure --ad-hoc gnuplot -- gnuplot < fig3.gnuplot
 #+end_src
 
+#+RESULTS:
+
 [[file:reproduction/fig3.png]]
 
 *** Figure 4
@@ -278,6 +288,8 @@ plot "dispersion_1IEE_5_5_5.plot" w p
 cd reproduction
 $guix_command environment --pure --ad-hoc gnuplot -- gnuplot < fig4.gnuplot
 #+end_src
+
+#+RESULTS:
 
 [[file:reproduction/fig4.png]]
 
@@ -303,6 +315,8 @@ cd reproduction
 $guix_command environment --pure --ad-hoc gnuplot -- gnuplot < fig5a.gnuplot
 $guix_command environment --pure --ad-hoc gnuplot -- gnuplot < fig5b.gnuplot
 #+end_src
+
+#+RESULTS:
 
 [[file:reproduction/fig5a.png]]
 [[file:reproduction/fig5b.png]]
