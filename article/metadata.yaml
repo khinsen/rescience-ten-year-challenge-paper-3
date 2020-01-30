@@ -36,8 +36,9 @@ keywords: rescience c, rescience x
 code:
   - url: https://github.com/khinsen/rescience-ten-year-challenge-paper-3
   - doi: 
+  - swh: 
 
-# Date URL and DOI (optional if no data)
+# Data URL and DOI (optional if no data)
 data:
   - url:
   - doi:
@@ -79,7 +80,7 @@ language: Python
 
 # For example, the URL of the GitHub issue where review actually occured
 review: 
-  - url: 
+  - url: https://github.com/ReScience/submissions/issues/11
 
 contributors:
   - name:
@@ -94,19 +95,19 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received:  November 1, 2018
-  - accepted:
-  - published: 
+  - received: November 23, 2019
+  - accepted: January 29, 2020
+  - published: January 29, 2020
 
 # This information will be provided by the editor
 article:
-  - number: # Article number will be automatically assigned during publication
-  - doi:    # DOI from Zenodo
-  - url:    # Final PDF URL (Zenodo or rescience website?)
+  - number: 1
+  - doi:    10.5072/zenodo.481691
+  - url:    https://sandbox.zenodo.org/record/481691/files/article.pdf
 
 # This information will be provided by the editor
 journal:
   - name:   "ReScience C"
   - issn:   2430-3658
-  - volume: 5
-  - issue:  12
+  - volume: 6
+  - issue:  1
