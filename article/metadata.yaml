@@ -28,7 +28,7 @@ affiliations:
     address: Gif sur Yvette, France
 
 # List of keywords (adding the programming language might be a good idea)
-keywords: rescience c, rescience x
+keywords: protein structure, protein crystals, normal modes, Python
 
 # Code URL and DOI (url is mandatory for replication, doi after acceptance)
 # You can get a DOI for your code from Zenodo,
@@ -69,7 +69,7 @@ type: Reproduction
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 #  (one domain only & try to be not overly specific)
-domain: biophysics
+domain: Biophysics
 
 # Coding language (main one only if several)
 language: Python
@@ -80,7 +80,7 @@ language: Python
 
 # For example, the URL of the GitHub issue where review actually occured
 review: 
-  - url: https://github.com/ReScience/submissions/issues/11
+  - url: 
 
 contributors:
   - name:
@@ -95,15 +95,15 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received: November 23, 2019
-  - accepted: January 29, 2020
-  - published: January 29, 2020
+  - received: 
+  - accepted: 
+  - published: 
 
 # This information will be provided by the editor
 article:
-  - number: 1
-  - doi:    10.5072/zenodo.481691
-  - url:    https://sandbox.zenodo.org/record/481691/files/article.pdf
+  - number: 
+  - doi:    
+  - url:    
 
 # This information will be provided by the editor
 journal:
