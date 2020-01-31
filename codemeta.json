@@ -1,0 +1,17 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Structural flexibility in proteins: impact of the crystal environment",
+  "codeRepository": "https://github.com/khinsen/rescience-ten-year-challenge-paper-3",
+  "programmingLanguage": "Python",
+  "license": "CC-BY 4.0 International",
+  "description": "Computes the normal modes of a protein crystal using an Elastic Network Model, and extracts information about atomic fluctuations in the crystal from the normal modes.",
+  "creator": [
+    {
+      "@type": "Person",
+      "givenName": "Konrad",
+      "familyName": "Hinsen",
+      "id": "https://orcid.org/0000-0003-0330-9428"
+    }
+  ]
+}
