@@ -27,6 +27,7 @@ A quick look at the changes shows
  - the correction of a typo that had no influence on the results
  - a bug fix for handling PDB files with missing ADPs (anisotropic displacement parameters)
  - additional diagnostic output
+ - an additional script for computing crystal modes with a lower memory footprint, at the cost of higher runtime, using a different matrix diagonalization algorithm.
 
 #+begin_src sh :results output :exports both
 diff -r scripts-from-suplementary-material-to-original-paper updated-scripts-from-obsolete-web-server
