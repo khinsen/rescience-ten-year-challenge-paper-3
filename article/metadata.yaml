@@ -36,7 +36,7 @@ keywords: protein structure, protein crystals, normal modes, Python
 code:
   - url: https://github.com/khinsen/rescience-ten-year-challenge-paper-3
   - doi: 
-  - swh: 
+  - swh: swh:1:dir:8a73b8438b411cc8a58a3db7789ff45690808afa
 
 # Data URL and DOI (optional if no data)
 data:
@@ -80,14 +80,14 @@ language: Python
 
 # For example, the URL of the GitHub issue where review actually occured
 review: 
-  - url: 
+  - url: https://github.com/ReScience/submissions/issues/14
 
 contributors:
-  - name:
-    orcid: 
+  - name: Marc André Delsuc
+    orcid: 0000-0002-1400-5326
     role: editor
-  - name:
-    orcid:
+  - name: François-Xavier Coudert
+    orcid: 0000-0001-5318-3910
     role: reviewer
   - name:
     orcid:
@@ -95,7 +95,7 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received: 
+  - received: January 30, 2020
   - accepted: 
   - published: 
 
